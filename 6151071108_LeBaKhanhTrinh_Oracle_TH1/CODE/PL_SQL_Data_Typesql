@@ -1,0 +1,122 @@
+--(1) PL/SQL DataType
+--Q1
+DECLARE
+  c VARCHAR2(3 CHAR);
+BEGIN
+  c := 'abc  ';
+END;
+--Q2 
+--CREATE TABLE
+CREATE TABLE Test(
+text CHAR(5)
+);
+--
+DECLARE 
+  a VARCHAR(5 CHAR) := 'ABC';
+  BEGIN
+  INSERT INTO Test(text) VALUES(a);
+  END;
+--Q3
+SET SERVEROUTPUT ON;
+DECLARE
+   text_1  CHAR(15 CHAR);
+   text_2   VARCHAR2(15 CHAR);
+BEGIN
+  text_1 := 'Minh';
+  text_2  := 'Cming';
+ 
+  DBMS_OUTPUT.PUT_LINE( text_1 );
+  DBMS_OUTPUT.PUT_LINE( text_2);
+END;
+
+--Q4
+CREATE PROCEDURE check_bool (bl BOOLEAN) AUTHID DEFINER
+AS
+BEGIN
+  DBMS_OUTPUT.put_line (
+    CASE
+      WHEN bl IS NULL THEN 'Unknown'
+      WHEN bl THEN 'Yes'
+      WHEN NOT bl THEN 'No'
+    END
+  );
+END;
+--
+BEGIN
+  check_bool(NULL);
+  check_bool(FALSE);
+  check_bool(TRUE);
+END;
+
+--Q5
+DECLARE
+  n1 PLS_INTEGER := 3013010101010;
+  n2 PLS_INTEGER := 1;
+  s NUMBER;
+BEGIN
+  s := n1 + n2;
+END;
+--Q6
+DECLARE
+  num SIMPLE_INTEGER := 2147483645;
+BEGIN
+  FOR j IN 1..4 LOOP
+    num := num + 1;
+    DBMS_OUTPUT.PUT_LINE(TO_CHAR(num, 'S9999999999'));
+  END LOOP;
+  FOR j IN 1..4 LOOP
+   num := num - 1;
+   DBMS_OUTPUT.PUT_LINE(TO_CHAR(num, 'S9999999999'));
+  END LOOP;
+END;
+--Q7
+SET SERVEROUTPUT ON
+DECLARE
+  SUBTYPE ac_bal IS NUMBER;
+
+  chk_ac        ac_bal(6,2);
+  sb_ac         ac_bal(8,2);
+  depo_certificate  ac_bal(8,2);
+  max_ins_amt  CONSTANT   ac_bal(8,2) := 300000.00;
+
+  SUBTYPE ctr IS NATURAL;
+
+  acno     ctr := 1;
+  dep_amt     Ctr := 0;
+  wth_amt  Ctr := 0;
+  od_amt   Ctr := 0;
+
+  PROCEDURE ac_deposit (
+    acbal  IN OUT ac_bal,
+    amt   IN     ac_bal
+  ) IS
+  BEGIN
+    acbal  := acbal + amt;
+    dep_amt := dep_amt + 1;
+  END;
+  
+BEGIN
+  NULL;
+  END;
+--Q8
+DECLARE
+ subtype constrained_bi
+ IS
+ binary_integer range 1..10;
+ l_cbi_var1 constrained_bi;
+ BEGIN
+ l_cbi_var1:=8;
+  dbms_output.put_line('The value assigned is:'||to_char(l_cbi_var1));
+ END;
+ 
+SET SERVEROUTPUT ON ;
+ DECLARE
+ subtype constrained_bi
+ IS
+ binary_integer range 1..10;
+ l_cbi_var1 constrained_bi;
+ BEGIN
+ l_cbi_var1:=11;
+  dbms_output.put_line('The value assigned is:'||to_char(l_cbi_var1));
+ END;
+ 

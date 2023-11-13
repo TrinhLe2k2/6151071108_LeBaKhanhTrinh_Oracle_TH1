@@ -1,0 +1,612 @@
+--Q1
+
+DECLARE
+num_small NUMBER := 8;
+num_large NUMBER := 5;
+num_temp NUMBER;
+BEGIN
+
+IF num_small > num_large THEN
+num_temp := num_small;
+num_small := num_large;
+num_large := num_temp;
+END IF;
+
+DBMS_OUTPUT.PUT_LINE ('num_small = '||num_small);
+DBMS_OUTPUT.PUT_LINE ('num_large = '||num_large);
+END;
+--Q2
+DECLARE
+  PROCEDURE test1 (
+    sal_achieve  NUMBER,
+    target_qty  NUMBER,
+    emp_id NUMBER
+  )
+  IS
+    incentive   NUMBER := 0;
+    updated  VARCHAR2(3) := 'No';
+  BEGIN
+    IF sal_achieve > (target_qty + 200) THEN
+      incentive := (sal_achieve - target_qty)/4;
+ 
+      UPDATE employees
+      SET salary = salary + incentive 
+      WHERE employee_id = emp_id;
+ 
+      updated := 'Yes';
+    END IF;
+ 
+    DBMS_OUTPUT.PUT_LINE (
+      'Table updated?  ' || updated || ', ' || 
+      'incentive = ' || incentive || '.'
+    );
+  END test1;
+BEGIN
+  test1(2300, 2000, 144);
+  test1(3600, 3000, 145);
+END;
+--Q3
+DECLARE
+n1 NUMBER := &num1;
+BEGIN
+-- test if the number provided by the user is even
+IF MOD(n1,2) = 0 THEN
+DBMS_OUTPUT.PUT_LINE ('The number. '||n1||
+' is even number');
+ELSE
+DBMS_OUTPUT.PUT_LINE ('The number '||n1||' is odd number.');
+END IF;
+DBMS_OUTPUT.PUT_LINE ('Done Successfully');
+END;
+--Q4
+DECLARE
+  PROCEDURE test1 (
+    sal_achieve  NUMBER,
+    target_qty  NUMBER,
+    emp_id NUMBER
+  )
+  IS
+    incentive   NUMBER := 0;
+
+  BEGIN
+    IF sal_achieve > (target_qty + 200) THEN
+      incentive := (sal_achieve - target_qty)/4;
+ELSE
+ incentive :=75;
+END IF;
+DBMS_OUTPUT.PUT_LINE ('incentive = ' || incentive);
+      UPDATE employees
+      SET salary = salary + incentive 
+      WHERE employee_id = emp_id;
+   
+  END test1;
+BEGIN
+  test1(2300, 2000, 144);
+  test1(3600, 3000, 145);
+END;
+--Q5
+DECLARE
+dt1 DATE := TO_DATE('&new_dt', 'DD-MON-YYYY');
+get_day VARCHAR2(15);
+BEGIN
+get_day := RTRIM(TO_CHAR(dt1, 'DAY'));
+IF get_day IN ('SATURDAY', 'SUNDAY') THEN
+dbms_output.new_line;
+DBMS_OUTPUT.PUT_LINE 
+('The day of the given date is '||get_day||' and it falls on weekend');
+ELSE
+dbms_output.new_line;
+DBMS_OUTPUT.PUT_LINE ('The day of the given date is '||get_day||' and it does not fall on the weekend');
+END IF;
+DBMS_OUTPUT.PUT_LINE ('Execution  done successfully.');
+END;
+--Q6
+DECLARE
+  PROCEDURE test1 (sal_achieve  NUMBER)
+  IS
+    incentive  NUMBER := 0;
+  BEGIN 
+    IF sal_achieve > 44000 THEN
+      incentive := 1800;
+    ELSIF sal_achieve > 32000 THEN
+      incentive := 800;
+    ELSE
+      incentive := 500;
+    END IF;
+ DBMS_OUTPUT.NEW_LINE;
+    DBMS_OUTPUT.PUT_LINE (
+      'Sale achieved : ' || sal_achieve || ', incentive : ' || incentive || '.'
+    );
+  END test1;
+BEGIN
+  test1(45000);
+  test1(36000);
+  test1(28000);
+END;
+--Q7
+SET SERVEROUTPUT ON
+DECLARE
+    tot_emp NUMBER;
+BEGIN
+    SELECT Count(*)
+    INTO   tot_emp
+    FROM   employees e
+           join departments d
+             ON e.department_id = d.department_id
+    WHERE  e.department_id = 50;
+
+    dbms_output.Put_line ('The employees are in the department 50: '
+                          ||To_char(tot_emp));
+
+    IF tot_emp >= 45 THEN
+      dbms_output.Put_line ('There are no vacancies in the department 50.');
+    ELSE
+      dbms_output.Put_line ('There are some vacancies in department 50.');
+    END IF;
+END; 
+--Q8
+DECLARE
+    grd CHAR(1);
+  BEGIN
+    -- Accept value for grade
+    grd := '&new_grd';
+    IF grd = 'A' THEN
+      dbms_output.Put_line('Your Grade is: Outstanding');
+    ELSIF grd = 'B' THEN
+      dbms_output.Put_line('Your Grade is: Excellent');
+    ELSIF grd = 'C' THEN
+      dbms_output.Put_line('Your Grade is: Very Good');
+    ELSIF grd = 'D' THEN
+      dbms_output. Put_line('Your Grade is: Average');
+    ELSIF grd = 'F' THEN
+      dbms_output.Put_line('Your Grade is: Poor');
+    ELSE
+      dbms_output.Put_line('No such grade in the list.');
+    END IF;
+  END;
+--Q9
+SET SERVEROUTPUT ON
+DECLARE
+    tot_emp NUMBER;
+	get_dep_id NUMBER;
+	
+BEGIN
+    get_dep_id := '&new_dep_id';
+    SELECT Count(*)
+    INTO   tot_emp
+    FROM   employees e
+           join departments d
+             ON e.department_id = d.department_id
+    WHERE  e.department_id = get_dep_id;
+
+    dbms_output.Put_line ('The employees are in the department '||get_dep_id||' is: '
+                          ||To_char(tot_emp));
+
+    IF tot_emp >= 45 THEN
+      dbms_output.Put_line ('There are no vacancies in the department '||get_dep_id);
+    ELSE
+      dbms_output.Put_line ('There are '||to_char(45-tot_emp)||' vacancies in department '|| get_dep_id );
+    END IF;
+END; 
+--Q10
+DECLARE
+    grd CHAR(1);
+  BEGIN
+    -- Accept value for grade
+    grd := '&new_grd';
+  CASE grd
+    WHEN 'A' THEN dbms_output.Put_line('Your Grade is: Outstanding');
+    WHEN 'B' THEN dbms_output.Put_line('Your Grade is: Excellent');
+    WHEN 'C' THEN dbms_output.Put_line('Your Grade is: Very Good');
+    WHEN 'D' THEN dbms_output. Put_line('Your Grade is: Average');
+    WHEN 'F' THEN dbms_output.Put_line('Your Grade is: Poor');
+    ELSE dbms_output.Put_line('No such grade in the list.');
+  END CASE;	
+  END;
+--Q11
+DECLARE
+    grd CHAR(1);
+  BEGIN
+    -- Accept value for grade
+    grd := '&new_grd';
+  CASE 
+    WHEN grd = 'A' THEN dbms_output.Put_line('Your Grade is: Outstanding');
+    WHEN grd = 'B' THEN dbms_output.Put_line('Your Grade is: Excellent');
+    WHEN grd = 'C' THEN dbms_output.Put_line('Your Grade is: Very Good');
+    WHEN grd = 'D' THEN dbms_output.Put_line('Your Grade is: Average');
+    WHEN grd = 'F' THEN dbms_output.Put_line('Your Grade is: Poor');
+  END CASE;
+EXCEPTION
+  WHEN CASE_NOT_FOUND THEN
+    dbms_output.Put_line('No such grade in the list.');
+  END;
+--Q12
+DECLARE
+num1 NUMBER := &get_num;
+BEGIN
+IF num1 < 0 THEN
+DBMS_OUTPUT.PUT_LINE ('The number '||num1||' is a negative number');
+ELSIF num1 = 0 THEN
+DBMS_OUTPUT.PUT_LINE ('The number '||num1||' is equal to zero');
+ELSE
+DBMS_OUTPUT.PUT_LINE ('The number '||num1||' is a positive number');
+END IF;
+END;
+--Q13
+DECLARE
+    get_ctr CHAR(1) := '&input_a_character';
+BEGIN
+    IF ( get_ctr >= 'A'
+         AND get_ctr <= 'Z' )
+        OR ( get_ctr >= 'a'
+             AND get_ctr <= 'z' ) THEN
+      dbms_output.Put_line ('The given character is a letter');
+    ELSE
+      dbms_output.Put_line ('The given character is not a letter');
+
+      IF get_ctr BETWEEN '0' AND '9' THEN
+        dbms_output.Put_line ('The given character is a number');
+      ELSE
+        dbms_output.Put_line ('The given character is not a number');
+      END IF;
+    END IF;
+END; 
+--Q14
+DECLARE
+    temp1     NUMBER := &input_a_temp;
+    t_scale   CHAR := '&input_temp_scale';
+    new_temp  NUMBER;
+    new_scale CHAR;
+  BEGIN
+    IF t_scale != 'C'
+      AND
+      t_scale != 'F' THEN
+      dbms_output.Put_line ('The scale you input is not a valid scale');
+      new_temp := 0;
+      new_scale := 'C';
+    ELSE
+      IF t_scale = 'C' THEN
+        new_temp := ( ( 9 * temp1 ) / 5 ) + 32;
+        new_scale := 'F';
+      ELSE
+        new_temp := ( ( temp1 - 32 ) * 5 ) / 9;
+        new_scale := 'C';
+      END IF;
+    END IF;
+    dbms_output.Put_line ('The new temperature in scale '
+    ||new_scale
+    ||' is: '
+    ||new_temp);
+  END;
+--Q15
+SET serveroutput ON
+DECLARE
+    t_dt  DATE := To_date('&input_a_date', 'DD-MON-YYYY');
+    t_day VARCHAR2(1);
+BEGIN
+    t_day := To_char(t_dt, 'D');
+
+    CASE t_day
+      WHEN '1' THEN
+        dbms_output.Put_line ('The date you entered is Sunday.');
+      WHEN '2' THEN
+        dbms_output.Put_line ('The date you entered is Monday.');
+      WHEN '3' THEN
+        dbms_output.Put_line ('The date you entered is Tuesday.');
+      WHEN '4' THEN
+        dbms_output.Put_line ('The date you entered is Wednesday.');
+      WHEN '5' THEN
+        dbms_output.Put_line ('The date you entered is Thursday.');
+      WHEN '6' THEN
+        dbms_output.Put_line ('The date you entered is Friday.');
+      WHEN '7' THEN
+        dbms_output.Put_line ('The date you entered is Saturday.');
+    END CASE;
+END; 
+--Q16
+DECLARE
+  n NUMBER := 0;
+BEGIN
+  LOOP
+    DBMS_OUTPUT.PUT_LINE ('The value of n inside the loop is:  ' || TO_CHAR(n));
+    n := n + 1;
+    IF n > 5 THEN
+      EXIT;
+    END IF;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('The value of n outside the loop is: ' || TO_CHAR(n));
+END;
+--Q17
+DECLARE
+  n NUMBER := 0;
+BEGIN
+  LOOP
+    DBMS_OUTPUT.PUT_LINE('The value of n inside the loop is: ' || TO_CHAR(n));
+    n := n + 1; 
+    EXIT WHEN n > 5;
+  END LOOP;
+    DBMS_OUTPUT.PUT_LINE('The value of n after exit from the loop is: ' || TO_CHAR(n));
+END;
+--Q18
+DECLARE
+  m  PLS_INTEGER := 0;
+  n  PLS_INTEGER := 0;
+  k  PLS_INTEGER;
+BEGIN
+  <<outer_loop>> -- Nhãn cho vòng l?p bên ngoài
+  LOOP
+    n := n + 1;
+    k := 0;
+    DBMS_OUTPUT.PUT_LINE ('The values of inner loop are: ');	
+    
+    <<inner_loop>> -- Nhãn cho vòng l?p bên trong
+    LOOP
+      k := k + 1;
+      m := m + n * k; -- Sum several products
+  
+      EXIT inner_loop WHEN (k > 3);
+      DBMS_OUTPUT.PUT_LINE ('n='||TO_CHAR(n)||'  k='||TO_CHAR(k)||'  m='||TO_CHAR(m));		  
+      EXIT outer_loop WHEN ((n * k) > 6);
+    END LOOP inner_loop;
+  END LOOP outer_loop;
+  DBMS_OUTPUT.PUT_LINE
+    ('The total sum after completing the process is: ' || TO_CHAR(m));
+END;
+
+
+
+
+--Q19
+DECLARE
+  emp_min_salary NUMBER(6,0);
+  emp_max_salary NUMBER(6,0);
+  emp_mid_salary NUMBER(6,2);
+  tmp_salary     EMPLOYEES.SALARY%TYPE;
+  tmp_emp_id     EMPLOYEES.EMPLOYEE_ID%TYPE := 167;
+  tmp_emp_name	 EMPLOYEES.FIRST_NAME%TYPE;
+BEGIN
+
+  SELECT min_salary,
+         max_salary
+  INTO emp_min_salary,
+       emp_max_salary
+  FROM JOBS
+  WHERE JOB_ID = (SELECT JOB_ID
+                 FROM EMPLOYEES
+                 WHERE EMPLOYEE_ID = tmp_emp_id);
+ 
+  -- calculate mid-range
+  emp_mid_salary := (emp_min_salary + emp_max_salary) / 2;
+  -- get salary of the given employee
+  SELECT salary,first_name
+  INTO tmp_salary,tmp_emp_name
+  FROM employees
+  WHERE employee_id = tmp_emp_id;
+ 
+  -- update salary 
+  
+  IF tmp_salary < emp_mid_salary THEN
+    UPDATE employees
+    SET salary = emp_mid_salary
+    WHERE employee_id = tmp_emp_id;
+  ELSE
+    UPDATE employees
+    SET salary = salary + salary * 8 /100
+    WHERE employee_id = tmp_emp_id;
+  END IF;
+   --display message
+  IF tmp_salary > emp_mid_salary THEN
+   DBMS_OUTPUT.PUT_LINE ('The employee '||tmp_emp_name||' ID ' || TO_CHAR(tmp_emp_id) ||
+                         ' works in salary ' || TO_CHAR(tmp_salary) ||
+                         ' which is higher than mid-range of salary ' || TO_CHAR(emp_mid_salary));
+  ELSIF tmp_salary < emp_mid_salary THEN
+    DBMS_OUTPUT.PUT_LINE('The employee '||tmp_emp_name||' ID ' || TO_CHAR(tmp_emp_id) ||
+                         ' works in salary ' || TO_CHAR(tmp_salary) ||
+                         ' which is lower than mid-range of salary ' || TO_CHAR(emp_mid_salary));
+ 
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('The employee '||tmp_emp_name||' ID ' || TO_CHAR(tmp_emp_id) ||
+                         ' works in salary ' || TO_CHAR(tmp_salary) ||
+                         ' which is equal to the mid-range of salary ' || TO_CHAR(emp_mid_salary));
+  END IF;
+END;
+
+
+--Q20
+DECLARE
+  m PLS_INTEGER := 0;
+  n PLS_INTEGER := 0;
+ 
+BEGIN
+  LOOP
+    m := m + 1;
+    DBMS_OUTPUT.PUT_LINE ('The value of m = ' || m);
+    
+    LOOP
+      n := n + 1;
+      DBMS_OUTPUT.PUT_LINE ('The value of n = ' || n);
+      EXIT WHEN (n > 4);
+    END LOOP;
+ 
+    DBMS_OUTPUT.PUT_LINE ('Exited inner loop');
+ 
+    EXIT WHEN (m > 3);
+  END LOOP;
+ 
+  DBMS_OUTPUT.PUT_LINE ('Exited outer loop');
+END;
+--Q21
+DECLARE
+  m PLS_INTEGER := 0;
+  n PLS_INTEGER := 0;
+ 
+BEGIN
+  LOOP
+    m := m + 1;
+    DBMS_OUTPUT.PUT_LINE ('The value of m = ' || m);
+    
+    LOOP
+      n := n + 1;
+      DBMS_OUTPUT.PUT_LINE ('The value of n = ' || n);
+      EXIT WHEN (n > 4);
+    END LOOP;
+ 
+    DBMS_OUTPUT.PUT_LINE ('Exited inner loop');
+ 
+    EXIT WHEN (m > 3);
+  END LOOP;
+ 
+  DBMS_OUTPUT.PUT_LINE ('Exited outer loop');
+END;
+--Q22
+DECLARE
+  n NUMBER := 0;
+BEGIN
+  LOOP -- After CONTINUE statement, control resumes here
+    DBMS_OUTPUT.PUT_LINE ('The value inside the loop:  n = ' || TO_CHAR(n));
+    n := n + 1;
+    CONTINUE WHEN n < 4;
+    DBMS_OUTPUT.PUT_LINE
+      ('The value inside loop, after CONTINUE:  n = ' || TO_CHAR(n));
+    EXIT WHEN n = 6;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE ('The value after exit from the loop:  n = ' || TO_CHAR(n));
+END;
+--Q23
+DECLARE
+  n number:= &first_n_number;
+BEGIN
+ DBMS_OUTPUT.PUT_LINE ('The first '||n||' numbers are: ');
+    for i in 1..n loop
+       dbms_output.put(i||'  ');
+    END LOOP;
+    dbms_output.new_line;
+ END;
+--Q24
+DECLARE
+  n number:= &first_n_number;
+  i number:=1;
+  m number:=1;
+BEGIN
+ DBMS_OUTPUT.PUT_LINE ('The first '||n||' numbers are: ');
+  DBMS_OUTPUT.PUT (i||'  ');
+    for i in 1..n-1 loop
+	   m:=m+3;
+	   dbms_output.put(m||'  ');
+    END LOOP;
+    dbms_output.new_line;
+ END;
+--Q25
+<<main_label>>
+DECLARE
+  n NUMBER := 6;
+BEGIN
+  FOR n IN 1..4 LOOP
+    DBMS_OUTPUT.PUT_LINE (
+      'When local the value: ' || TO_CHAR(n) || ', but the value as global: ' ||
+      TO_CHAR(main_label.n)  
+    );
+  END LOOP;
+END main_label;
+--Q26
+BEGIN
+  <<loop_outer>> -- Nhãn cho vòng l?p bên ngoài
+  FOR j_outer IN 1..5 LOOP
+    <<loop_inner>> -- Nhãn cho vòng l?p bên trong
+    FOR j_inner IN 1..4 LOOP
+      IF j_outer = 4 THEN
+        DBMS_OUTPUT.PUT_LINE
+          ('When the value of j of outer loop: ' || TO_CHAR(j_outer) || ' then the value of j in the inner loop: '
+           || TO_CHAR(j_inner));
+      END IF;
+    END LOOP loop_inner;
+  END LOOP loop_outer;
+END;
+
+--Q27
+DECLARE
+    i NUMBER(3);
+    j NUMBER(3);
+BEGIN
+dbms_output.Put_line('The prime numbers are:');
+	dbms_output.new_line;
+    i := 2;
+    LOOP
+        j := 2;
+        LOOP
+            EXIT WHEN( ( MOD(i, j) = 0 )
+                        OR ( j = i ) );
+            j := j + 1;
+        END LOOP;
+        IF( j = i )THEN
+          dbms_output.Put(i||'   ');							   
+        END IF;
+        i := i + 1;
+        exit WHEN i = 50;
+    END LOOP;
+	dbms_output.new_line;
+END;
+
+
+--Q28
+DECLARE
+  msg  VARCHAR2(30);
+  n  PLS_INTEGER := 83;
+BEGIN
+  FOR i in 2..ROUND(SQRT(n)) LOOP
+    IF n MOD i = 0 THEN
+      msg := ' is not a prime number';
+      GOTO when_prime;
+    END IF;
+  END LOOP;
+
+  msg := ' is a prime number';
+ 
+  <<when_prime>>
+  DBMS_OUTPUT.PUT_LINE(TO_CHAR(n) || msg);
+END;
+--Q29
+DROP TABLE emp_temp;
+CREATE TABLE emp_temp (
+  emp_id      NUMBER,
+  emp_email  VARCHAR2(40)
+);
+ 
+DECLARE
+  number_of_emp  NUMBER;
+BEGIN
+  SELECT COUNT(employee_id) INTO number_of_emp
+  FROM employees;
+  
+  FOR i IN 1..number_of_emp LOOP
+    INSERT INTO emp_temp (emp_id, emp_email)
+    VALUES(i, 'not available now');
+  END LOOP;
+END;
+
+--Q30
+
+DROP TABLE TEST;
+CREATE TABLE TEST(
+c1 INTEGER,
+c2 INTEGER);
+
+DELETE FROM TEST;
+INSERT INTO TEST VALUES(2, 4);
+INSERT INTO TEST VALUES(1, 3);
+
+
+DECLARE
+    n1 NUMBER;
+    n2 NUMBER;
+BEGIN
+    SELECT c1,c2 INTO n1,n2 FROM TEST WHERE c1>1;
+   IF n2=4 THEN
+        INSERT INTO TEST VALUES(n2,n1);
+    ELSE
+        INSERT INTO TEST VALUES(n2+15,n1+15);
+    END IF;
+END;
+
+
+

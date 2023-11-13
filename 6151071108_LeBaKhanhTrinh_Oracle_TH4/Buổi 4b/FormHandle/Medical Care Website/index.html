@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Care</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <section id="Heading">
+        <div class="container bg-light">
+            <h1 class="text-center p-3">Medical Care</h1>
+        </div>
+    </section>
+    <section id="Main">
+        <div class="container">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#WorkModal">
+                ADD NEW
+            </button>
+            <div id="Histories" class="my-3">
+                <p class="fw-bold">__Histories</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>DoctorID</th>
+                            <th>PatientID</th>
+                            <th>TypeofTreatment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>John</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </section>
+    <section id="Footer">
+
+    </section>
+    <section id="Modal">
+        <!-- Modal -->
+        <div class="modal fade" id="WorkModal" tabindex="-1" aria-labelledby="WorkModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="WorkModalLabel">Medical Care</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formCreateWork">
+                            <div class="container mt-3">
+                                <div class="px-3">
+                                    <h2 class="mb-4">Medical Care - Add new</h2>
+                                    <div class="mb-3">
+                                        <label for="DoctorID" class="form-label">DoctorID:</label>
+                                        <input type="number" class="form-control" id="DoctorID"
+                                            placeholder="Enter DoctorID" name="DoctorID">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="PatientID" class="form-label">PatientID:</label>
+                                        <input type="number" class="form-control" id="PatientID"
+                                            placeholder="Enter PatientID" name="PatientID">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="TypeofTreatment" class="form-label">TypeofTreatment:</label>
+                                        <input type="text" class="form-control" id="TypeofTreatment"
+                                            placeholder="Enter TypeofTreatment" name="TypeofTreatment">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeBtn" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="submitCreate()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="./main.js"></script>
+
+    <!-- Link to Bootstrap JS (optional, only needed if you want to use Bootstrap JavaScript features) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

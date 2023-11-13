@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Project</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <section id="Heading">
+        <div class="container bg-light">
+            <h1 class="text-center p-3">Assignment Project</h1>
+        </div>
+    </section>
+    <section id="Main">
+        <div class="container">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#WorkModal">
+                Assignment Employee
+            </button>
+            <div id="Histories" class="my-3">
+                <p class="fw-bold">__Histories</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>EMPNO</th>
+                            <th>PROJNO</th>
+                            <th>ROLE</th>
+                            <th>DURATION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>6 month</td>
+                        </tr>
+                        <tr>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>1 year</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </section>
+    <section id="Footer">
+
+    </section>
+    <section id="Modal">
+        <!-- Modal -->
+        <div class="modal fade" id="WorkModal" tabindex="-1" aria-labelledby="WorkModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="WorkModalLabel">Assignment Project</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formCreateWork">
+                            <div class="container mt-3">
+                                <div class="px-3">
+                                    <h2 class="mb-4">Assignment Employee</h2>
+                                    <div class="mb-3">
+                                        <label for="empNO" class="form-label">EmpNO:</label>
+                                        <input type="number" class="form-control" id="empNO"
+                                            placeholder="Enter empNO" name="empNO">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="projNO" class="form-label">ProjNO:</label>
+                                        <input type="number" class="form-control" id="projNO"
+                                            placeholder="Enter projNO" name="projNO">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Role:</label>
+                                        <input type="text" class="form-control" id="role"
+                                            placeholder="Enter role" name="role">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="duration" class="form-label">Duration:</label>
+                                        <input type="text" class="form-control" id="duration"
+                                            placeholder="Enter duration" name="duration">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeBtn" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="submitWork()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="./main.js"></script>
+
+    <!-- Link to Bootstrap JS (optional, only needed if you want to use Bootstrap JavaScript features) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <section id="Header">
+        <div class="container-fluid bg-info">
+            <div class="row">
+                <div class="col-6 col-md-4">
+                    <img src="./assets/images/logo.png" class="w-100 h-100" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="Main">
+        <div class="container-fluid bg-light" style="height: 100vh;">
+            <div class="container py-5">
+                <h2 class="text-center text-uppercase">TRA CỨU ĐIỂM THI TRUNG HỌC PHỔ THÔNG QUỐC GIa</h2>
+                <p>Thí sinh nhập tài khoản từ địa chỉ <a href="https://thisinh.thithptquocgia.edu.vn" class="text-decoration-none">https://thisinh.thithptquocgia.edu.vn</a> hoặc nhập số báo danh vào ô dưới đây.</p>
+                <form action="" id="formSearch">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-3 col-md-2">
+                            <label for="inputSearch" class="col-form-label">Số báo danh: </label>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <input type="number" id="inputSearch" class="form-control">
+                        </div>
+                        <div class="col-5 col-md-6">
+                            <span id="passwordHelpInline" class="form-text">
+                                Số báo danh là mã số học sinh
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-3 col-md-2"></div>
+                        <div class="col-4">
+                            <input id="SearchBtn" type="submit" value="Tra cứu" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <div class="my-5" id="Result">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="Footer">
+        
+    </section>
+
+    
+    <script src="./assets/script.js"></script>
+</body>
+</html>

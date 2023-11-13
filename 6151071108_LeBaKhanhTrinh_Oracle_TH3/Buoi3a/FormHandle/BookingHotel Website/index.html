@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Hotel</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <section id="Heading">
+        <div class="container bg-light">
+            <h1 class="text-center p-3">Black Hotel</h1>
+        </div>
+    </section>
+    <section id="Main">
+        <div class="container">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#BookingHotelModal">
+                Book room
+            </button>
+            <div id="Histories" class="my-3">
+                <p class="fw-bold">__Histories</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>bookingNO</th>
+                            <th>Guest</th>
+                            <th>Hotel</th>
+                            <th>Room</th>
+                            <th>dateBooking</th>
+                            <th>dateCheckin</th>
+                            <th>dateCheckout</th>
+                            <th>description</th>
+                            <th>numberGuest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                            <td>John</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section id="Footer">
+
+    </section>
+    <section id="Modal">
+        <!-- Modal -->
+        <div class="modal fade" id="BookingHotelModal" tabindex="-1" aria-labelledby="BookingHotelModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="BookingHotelModalLabel">Black Hotel</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formCreateBooking">
+                            <div class="container mt-5">
+                                <div class="px-3">
+                                    <h2 class="mb-4">Booking Hotel</h2>
+                                    <div class="mb-3">
+                                        <label for="guest" class="form-label">Guest:</label>
+                                        <input type="number" class="form-control" id="guest"
+                                            placeholder="Enter guest" name="guest">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="hotel" class="form-label">Hotel:</label>
+                                        <input type="number" class="form-control" id="hotel"
+                                            placeholder="Enter hotel" name="hotel">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="room" class="form-label">Room:</label>
+                                        <input type="number" class="form-control" id="room"
+                                            placeholder="Enter room" name="room">
+                                    </div>
+                                    <!-- <div class="mb-3">
+                                        <label for="guest" class="form-label">Guest:</label>
+                                        <select class="form-select" id="guest">
+                                            <option selected>Enter guest</option>
+                                            <option value="1">Guest One</option>
+                                            <option value="2">Guest Two</option>
+                                            <option value="3">Guest Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="hotelSelect" class="form-label">Hotel:</label>
+                                        <select class="form-select" id="hotelSelect">
+                                            <option selected>Select hotel</option>
+                                            <option value="1">Hotel One</option>
+                                            <option value="2">Hotel Two</option>
+                                            <option value="3">Hotel Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3" id="roomOptions">
+                                        
+                                    </div> -->
+    
+                                    <div class="mb-3">
+                                        <label for="checkInDate" class="form-label">Check-In Date:</label>
+                                        <input type="date" class="form-control" id="checkInDate"
+                                            placeholder="Enter check-in date" name="checkInDate">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="checkOutDate" class="form-label">Check-Out Date:</label>
+                                        <input type="date" class="form-control" id="checkOutDate"
+                                            placeholder="Enter check-out date" name="checkOutDate">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description</label>
+                                        <input type="text" class="form-control" id="description"
+                                            placeholder="Enter description" name="description">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="numberGuest" class="form-label">Number Guest</label>
+                                        <input type="number" class="form-control" id="numberGuest"
+                                            placeholder="Enter number guest" name="numberGuest">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeBtn" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="submitBooking()">Book room</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <script src="./main.js"></script>
+
+    <!-- Link to Bootstrap JS (optional, only needed if you want to use Bootstrap JavaScript features) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script>
+        function submitBooking() {
+            var guestName = document.getElementById('guestName').value;
+            var checkInDate = document.getElementById('checkInDate').value;
+            var checkOutDate = document.getElementById('checkOutDate').value;
+
+            var bookingResult = document.getElementById('bookingResult');
+            bookingResult.innerHTML = "<strong>Guest Name:</strong> " + guestName +
+                "<br><strong>Check-In Date:</strong> " + checkInDate +
+                "<br><strong>Check-Out Date:</strong> " + checkOutDate;
+        }
+    </script> -->
+    <script>
+        // Lấy thẻ select và thẻ div chứa danh sách phòng
+        var hotelSelect = document.getElementById("hotelSelect");
+        var roomOptionsDiv = document.getElementById("roomOptions");
+
+        // Danh sách phòng theo khách sạn
+        var roomsByHotel = {
+            1: [
+                {
+                    id: 1,
+                    room: "Room 1A",
+                    price: 140000,
+                    status: "Full"
+                },
+                {
+                    id: 2,
+                    room: "Room 1B",
+                    price: 150000,
+                    status: "Available"
+                },
+                {
+                    id: 3,
+                    room: "Room 1C",
+                    price: 160000,
+                    status: "Available"
+                }
+            ],
+            2: [
+                {
+                    id: 4,
+                    room: "Room 2A",
+                    price: 145000,
+                    status: "Available"
+                },
+                {
+                    id: 5,
+                    room: "Room 2B",
+                    price: 153000,
+                    status: "Full"
+                }
+            ],
+            3: [
+                {
+                    id: 6,
+                    room: "Room 3A",
+                    price: 190000,
+                    status: "Available"
+                }
+            ]
+        };
+
+        // Xử lý sự kiện khi người dùng chọn khách sạn
+        hotelSelect.addEventListener("change", function () {
+            // Lấy giá trị của khách sạn đã chọn
+            var selectedHotel = hotelSelect.value;
+
+            // Lấy danh sách phòng cho khách sạn đã chọn
+            var rooms = roomsByHotel[selectedHotel];
+
+            // Xây dựng danh sách phòng mới
+            var roomOptionsHTML = "";
+            rooms.forEach(function (roomm) {
+                roomOptionsHTML += '<div class="form-check form-check-inline">';
+                roomOptionsHTML += '<input class="form-check-input" type="radio" name="inlineRadioOptions" id="' + roomm.room + '" value="' + roomm.id + '">';
+                roomOptionsHTML += '<label class="form-check-label" for="' + roomm.room + '">' + roomm.room + '-' + roomm.price + '$ (' + (roomm.status) + ')</label>';
+                roomOptionsHTML += '</div>';
+            });
+
+            // Gán danh sách phòng vào thẻ div
+            roomOptionsDiv.innerHTML = roomOptionsHTML;
+        });
+
+    </script>
+</body>
+
+</html>
